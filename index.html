@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <title>Ramen Rater</title>
   <link rel="stylesheet" type="text/css" href="styles.css" />
-  <script defer type="module" src="./src/index.js"></script>
+  <script src="./src/index.js"></script>
 </head>
 
 <body>
@@ -15,9 +15,16 @@
 
   
   <div id="ramen-menu">
-  
+    <img src="./assets/ramen/shoyu.jpg" id="1" onclick="test(this.id)">
   </div>
 
+  <script type="text/javascript">iPrintThings('print me')</script>
+  <!-- <script>
+    function test(id) {
+      console.log(id);
+    }
+  </script> -->
+  <button onclick="iPrintThings('print me')">Print me</button>
 
   <div id="ramen-detail">
     <img class="detail-image" src="./assets/image-placeholder.jpg" alt="Insert Name Here" />

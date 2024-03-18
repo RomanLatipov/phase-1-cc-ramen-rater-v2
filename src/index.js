@@ -1,8 +1,12 @@
 // index.js
 
+function iPrintThings(thing) {
+	console.log(thing);
+}
+
 // Callbacks
 const handleClick = (ramen) => {
-  // Add code
+  
 };
 
 const addSubmitListener = () => {
@@ -10,10 +14,24 @@ const addSubmitListener = () => {
 }
 
 const displayRamens = () => {
-  // Add code
-};
+  // const menu = document.querySelector("#ramen-menu");
+  fetch("http://localhost:3000/ramens")
+    .then(response => response.json())
+    .then(menu => {
+      menu.forEach(e => {
+        const image = document.createElement("img");
+        image.src = e.image;
+        image.setAttribute("id", e.id);
+        image.setAttribute("onclick", `test(this.id)`);
+        document.querySelector("#ramen-menu").append(image);
+      })
+    })
+}
 
 const main = () => {
+  //displayRamens();
+  //addSubmitListener();
+
   // Invoke displayRamens here
   // Invoke addSubmitListener here
 }
