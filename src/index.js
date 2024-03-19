@@ -8,9 +8,8 @@ const handleClick = (ramen) => {
   document.querySelector("#rating-display").textContent = ramen.rating;
   document.querySelector("#comment-display").textContent = ramen.comment;
 };
-const addSubmitListener = (form) => {
-  console.log(document.querySelector("form"));
-  document.querySelector("form").addEventListener("submit", event  => {
+const addSubmitListener = () => {
+  document.querySelector("#new-ramen").addEventListener("submit", event  => {
     event.preventDefault();
     fetch("http://localhost:3000/ramens", {
       method: "POST",
@@ -23,11 +22,22 @@ const addSubmitListener = (form) => {
         restaurant: document.querySelector("form").restaurant.value,
         image: document.querySelector("form").image.value,
         rating: document.querySelector("form").rating.value,
-        comment: document.querySelector("form").new-comment.value,
+        comment: document.getElementById("new-comment").value,
       })
     })
     .then(response => response.json())
-    .then(menu => displayRamens());
+    .then(ramen => {
+      const image = document.createElement("img");
+        image.src = ramen.image;
+        image.setAttribute("id", ramen.id);
+        document.querySelector("#ramen-menu").append(image);
+        location.reload();
+    });
+  });
+}
+const edit = () => {
+  document.querySelector("#edit-ramenn").addEventListener("submit", event  => {
+    console.log(document.querySelector("form").rating.value);
   });
 }
 
@@ -42,6 +52,7 @@ const displayRamens = () => {
         // image.setAttribute("onclick", `handleClick(this.id)`);
         document.querySelector("#ramen-menu").append(image);
       })
+      handleClick(menu[0]);
       const image = document.getElementById("ramen-menu");
       image.addEventListener("click", event => {
           menu.forEach(e => {
@@ -60,10 +71,9 @@ const main = () => {
 main()
 
 // Export functions for testing
-// export {
-//   displayRamens,
-//   addSubmitListener,
-//   handleClick,
-//   main,
-// };
-
+export {
+  displayRamens,
+  addSubmitListener,
+  handleClick,
+  main,
+};
